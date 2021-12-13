@@ -5,4 +5,4 @@ This is a password generator to create secure passwords. Users can choose the le
 <p dir="auto"><a href="https://github.com/Yanbud/password-generator">Link to the code repository</a></p>
 
 ## Screenshot
-<p dir="auto"><img src="assets/images/screenshot.png" alt="screenshot of index.html" style="max-width: 100%;" /></p>
+<p dir="auto"><img src="screenshot.png" alt="screenshot of index.html" style="max-width: 100%;" /></p>
