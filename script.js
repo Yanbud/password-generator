@@ -8,13 +8,13 @@ var newOne = [];
 
 // Write password to the #password input
 var generatePassword = function() {
-
     var pwdLength = prompt("What's the length of the password? (8~128)");
-
-    if (pwdLength < 8 || pwdLength > 128) {
-        alert("The password is at least 8 characters long and no more than 128 characters.")
+    if (pwdLength == "") {
+        alert("You must put something in.")
     } else if (isNaN(pwdLength)) {
         alert("The length should be a number.")
+    } else if (pwdLength < 8 || pwdLength > 128) {
+        alert("The password is at least 8 characters long and no more than 128 characters.")
     } else {
         var includeLow = confirm("Are lowercase letters included? ");
         var includeUpp = confirm("Are uppercase letters included? ");
@@ -42,17 +42,17 @@ var generatePassword = function() {
                 newOne = charUpp;
             } else if (includeUpp && includeNum && !includeSpe) {
                 newOne = charUpp.concat(num);
-            } else if (includeUpp && includeNum && includeSpe) {
-                newOne = charUpp.concat(num, charSpec);
             } else if (includeUpp && !includeNum && includeSpe) {
                 newOne = charUpp.concat(charSpec);
+            } else if (includeUpp && includeNum && includeSpe) {
+                newOne = charUpp.concat(num, charSpec);
             } else if (!includeUpp && includeNum && !includeSpe) {
                 newOne = num;
             } else if (!includeUpp && includeNum && includeSpe) {
                 newOne = num.concat(charSpec);
             } else if (!includeUpp && !includeNum && includeSpe) {
                 newOne = charSpec;
-            } else if (!includeUpp && !includeNum && !includeSpe) {
+            } else {
                 alert("You have to select at least one character type.");
             }
         };
@@ -68,18 +68,10 @@ var generatePassword = function() {
 
 }
 
-
-
-
-
-
 function writePassword() {
     var password = generatePassword();
     var passwordText = document.querySelector("#password");
-
     passwordText.value = password;
-
-
 }
 
 // Add event listener to generate button
