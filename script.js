@@ -7,19 +7,28 @@ var charSpec = [" ", "!", "\"", "#", "$", "%", "&", "'", "(", ")", "*", "+", ","
 var newOne = [];
 
 // Write password to the #password input
+// Input the length of the passwork
 var generatePassword = function() {
     var pwdLength = prompt("What's the length of the password? (8~128)");
+    // When the field is blank
     if (pwdLength == "") {
         alert("You must put something in.")
-    } else if (isNaN(pwdLength)) {
+        return "";
+    }
+    // When the input is not a number
+    else if (isNaN(pwdLength)) {
         alert("The length should be a number.")
-    } else if (pwdLength < 8 || pwdLength > 128) {
+        return "";
+    }
+    // When the input is less than 8 or greater than 128
+    else if (pwdLength < 8 || pwdLength > 128) {
         alert("The password is at least 8 characters long and no more than 128 characters.")
+        return "";
     } else {
-        var includeLow = confirm("Are lowercase letters included? ");
-        var includeUpp = confirm("Are uppercase letters included? ");
-        var includeNum = confirm("Are numeric characters included? ");
-        var includeSpe = confirm("Are special characters included ? ");
+        var includeLow = confirm("Are lowercase letters included?");
+        var includeUpp = confirm("Are uppercase letters included?");
+        var includeNum = confirm("Are numeric characters included?");
+        var includeSpe = confirm("Are special characters included?");
         if (includeLow) {
             if (includeUpp && !includeNum && !includeSpe) {
                 newOne = charLow.concat(charUpp);
@@ -54,15 +63,18 @@ var generatePassword = function() {
                 newOne = charSpec;
             } else {
                 alert("You have to select at least one character type.");
+                return "";
             }
         };
     }
+    // generate a random number for the index of array newOne
+    // generate a new array by pushing items from newOne to an empty array
     valArray = [];
     for (var i = 0; i < pwdLength; i++) {
         var r = Math.floor(Math.random() * (newOne.length));
         valArray.push(newOne[r]);
-        newOne.splice(r, 1);
     }
+    // transform array valArray to string to get a password
     var newPassword = valArray.join("");
     return newPassword;
 
